@@ -34,7 +34,10 @@ export const disableDarkMode = () => {
 };
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri:
+    process.env.NODE_ENV === "production"
+      ? "백엔드주소/graphql"
+      : "https://kimstaclone-backend.herokuapp.com/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
